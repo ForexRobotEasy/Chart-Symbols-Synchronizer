@@ -1,0 +1,72 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                             Chart Symbols Synchronizer                                                      |
+//|                                      Copyright 2022, Forex Robot Easy Team                                      |
+//|                                          https://forexroboteasy.com                                            |
+//+------------------------------------------------------------------+
+#property indicator_chart_window
+#property strict
+
+//+------------------------------------------------------------------+
+//| Custom indicator initialization function                         |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+    // Attach the Chart Symbols Synchronizer indicator to the chart
+    ChartIndicatorAdd(0, INDICATOR_SYMBOLS_SYNCHRONIZER);
+
+    return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Custom indicator iteration function                              |
+//+------------------------------------------------------------------+
+int OnCalculate(const int rates_total,
+                const int prev_calculated,
+                const datetime &time[],
+                const double &open[],
+                const double &high[],
+                const double &low[],
+                const double &close[],
+                const long &tick_volume[],
+                const long &volume[],
+                const int &spread[])
+{
+    // Synchronize trading symbols on all other charts within the same trading terminal
+    if (IsNewSymbolAdded() || IsButtonClicked())
+    {
+        SynchronizeSymbols();
+    }
+
+    // Continue with normal indicator calculations
+
+    return(rates_total);
+}
+
+//+------------------------------------------------------------------+
+//| Check if a new symbol is added                                   |
+//+------------------------------------------------------------------+
+bool IsNewSymbolAdded()
+{
+    // Add your logic here to check if a new symbol is added
+    // Return true if a new symbol is added, false otherwise
+}
+
+//+------------------------------------------------------------------+
+//| Check if the button is clicked                                   |
+//+------------------------------------------------------------------+
+bool IsButtonClicked()
+{
+    // Add your logic here to check if the button is clicked
+    // Return true if the button is clicked, false otherwise
+}
+
+//+------------------------------------------------------------------+
+//| Synchronize symbols on all other charts within the same terminal |
+//+------------------------------------------------------------------+
+void SynchronizeSymbols()
+{
+    // Add your logic here to synchronize symbols on all other charts
+    // within the same terminal
+}
+
